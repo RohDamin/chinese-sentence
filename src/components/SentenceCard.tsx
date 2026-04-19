@@ -64,7 +64,7 @@ export function SentenceCard({
 
   return (
     <div
-      className="relative flex h-[min(68vh,460px)] min-h-[22rem] w-full max-w-[480px] cursor-pointer flex-col rounded-3xl bg-white px-5 pb-8 pt-12 shadow-[0_8px_30px_rgba(0,0,0,0.08)] outline-none ring-[#EA580C] focus-visible:ring-2"
+      className="relative flex h-[min(68vh,460px)] min-h-[22rem] w-full max-w-[480px] cursor-pointer flex-col rounded-3xl bg-white px-5 pb-8 pt-12 shadow-[0_8px_30px_rgba(0,0,0,0.08)] outline-none ring-[#ff8243] focus-visible:ring-2"
       tabIndex={0}
       onClick={handleCardSpeak}
       onKeyDown={(e) => {
@@ -87,7 +87,7 @@ export function SentenceCard({
 
       <div className="flex min-h-0 flex-1 flex-col justify-center gap-4 overflow-y-auto px-1">
         <p
-          className={`text-center font-['Noto_Sans_SC',sans-serif] text-[clamp(1.65rem,7vw,2.5rem)] leading-snug ${lineClass(blurHanzi, revealed.hanzi, 'text-[#1A1A1A]')}`}
+          className={`text-center font-['Noto_Sans_SC',sans-serif] text-[clamp(1.9rem,8.5vw,2.85rem)] leading-snug ${lineClass(blurHanzi, revealed.hanzi, 'text-[#1A1A1A]')}`}
           onClick={(e) => toggleReveal('hanzi', blurHanzi, e)}
           onKeyDown={lineKey('hanzi', blurHanzi)}
         >

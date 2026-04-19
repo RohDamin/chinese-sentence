@@ -12,7 +12,7 @@ export function CategoryList({ categories }: Props) {
         <li key={c.id}>
           <Link
             to={`/study/${encodeURIComponent(c.id)}`}
-            className="block rounded-2xl border border-stone-200 bg-white p-4 text-left shadow-md transition hover:border-[#EA580C]/40 hover:shadow-lg active:scale-[0.99]"
+            className="block rounded-2xl border border-stone-200 bg-white p-4 text-left shadow-md transition hover:border-[#ff8243]/40 hover:shadow-lg active:scale-[0.99]"
           >
             <h2 className="text-lg font-semibold text-[#1A1A1A]">{c.name}</h2>
             {c.description ? (

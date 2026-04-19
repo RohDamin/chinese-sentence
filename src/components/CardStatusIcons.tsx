@@ -10,7 +10,7 @@ function iconBtn(active: boolean) {
   return [
     'flex h-10 w-10 items-center justify-center rounded-full border transition-colors',
     active
-      ? 'border-[#EA580C] bg-[#EA580C]/10 text-[#EA580C]'
+      ? 'border-[#ff8243] bg-[#ff8243]/10 text-[#ff8243]'
       : 'border-stone-200 bg-white/90 text-stone-400 shadow-sm hover:border-stone-300 hover:text-stone-600',
     'disabled:pointer-events-none disabled:opacity-40',
   ].join(' ')
@@ -36,20 +36,12 @@ export function CardStatusIcons({
         aria-pressed={isChecked}
         aria-label="학습 완료"
       >
-        <svg
-          width="22"
-          height="22"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+        <span
+          className={`text-[1.65rem] leading-none ${isChecked ? '' : 'opacity-40 saturate-0'}`}
           aria-hidden
         >
-          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-          <polyline points="22 4 12 14.01 9 11.01" />
-        </svg>
+          ✅
+        </span>
       </button>
       <button
         type="button"

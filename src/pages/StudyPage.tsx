@@ -153,7 +153,7 @@ export function StudyPage() {
     return (
       <div className="p-6 text-center">
         <p className="text-stone-600">잘못된 주소입니다.</p>
-        <Link className="mt-4 inline-block text-[#EA580C]" to="/">
+        <Link className="mt-4 inline-block text-[#ff8243]" to="/">
           목록으로
         </Link>
       </div>

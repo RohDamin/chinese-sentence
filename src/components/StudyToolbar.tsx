@@ -19,7 +19,7 @@ interface Props {
 const pill = (active: boolean) =>
   `rounded-full px-2.5 py-1 text-xs font-medium transition-colors sm:px-3 sm:text-sm ${
     active
-      ? 'bg-[#EA580C] text-white'
+      ? 'bg-[#ff8243] text-white'
       : 'bg-stone-100 text-[#1A1A1A] hover:bg-stone-200'
   }`
 
@@ -43,7 +43,7 @@ function IconRound({
       title={label}
       className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors ${
         active
-          ? 'bg-[#EA580C] text-white'
+          ? 'bg-[#ff8243] text-white'
           : 'bg-stone-100 text-stone-500 hover:bg-stone-200 hover:text-stone-700'
       }`}
     >
