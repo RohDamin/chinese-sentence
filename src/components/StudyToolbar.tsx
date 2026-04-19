@@ -86,12 +86,21 @@ export function StudyToolbar({
 
         <div className="flex shrink-0 items-center gap-1">
           <IconRound active={false} onClick={onShuffle} label="문장 순서 랜덤">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <rect
+                x="3.5"
+                y="3.5"
+                width="17"
+                height="17"
+                rx="3"
+                stroke="currentColor"
+                strokeWidth="2"
               />
+              <circle cx="8.5" cy="8.5" r="1.6" fill="currentColor" />
+              <circle cx="15.5" cy="8.5" r="1.6" fill="currentColor" />
+              <circle cx="12" cy="12" r="1.6" fill="currentColor" />
+              <circle cx="8.5" cy="15.5" r="1.6" fill="currentColor" />
+              <circle cx="15.5" cy="15.5" r="1.6" fill="currentColor" />
             </svg>
           </IconRound>
           <IconRound
