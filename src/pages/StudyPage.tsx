@@ -14,10 +14,11 @@ function emptyStatus(): Status {
   return { is_checked: false, is_starred: false }
 }
 
+/** filterChecked: 켜면 체크되지 않은(미완료) 문장만. filterStarred: 켜면 즐겨찾기만. 둘 다 켜면 AND */
 function passesFilters(st: Status, filterChecked: boolean, filterStarred: boolean): boolean {
   if (!filterChecked && !filterStarred) return true
-  if (filterChecked && filterStarred) return st.is_checked && st.is_starred
-  if (filterChecked) return st.is_checked
+  if (filterChecked && filterStarred) return !st.is_checked && st.is_starred
+  if (filterChecked) return !st.is_checked
   return st.is_starred
 }
 
@@ -41,6 +42,8 @@ export function StudyPage() {
 
   const [slideIdx, setSlideIdx] = useState(0)
   const [dragX, setDragX] = useState(0)
+  /** 시트 원래 순서(0,1,2,…)가 아니라 랜덤 버튼으로 섞인 순서인지 */
+  const [orderIsRandom, setOrderIsRandom] = useState(false)
 
   useEffect(() => {
     if (!categoryId) return
@@ -65,6 +68,7 @@ export function StudyPage() {
         setOrder(rows.length ? rows.map((_, i) => i) : [])
         setStatusById(map)
         setSlideIdx(0)
+        setOrderIsRandom(false)
       } catch (e) {
         if (!cancelled) {
           setError(e instanceof Error ? e.message : '문장을 불러오지 못했습니다.')
@@ -132,6 +136,7 @@ export function StudyPage() {
     if (sentences.length === 0) return
     setOrder(shuffleOrder(sentences.length))
     setSlideIdx(0)
+    setOrderIsRandom(true)
   }
 
   const updateStatus = async (sentence: Sentence, patch: Partial<Status>) => {
@@ -161,6 +166,7 @@ export function StudyPage() {
         blurHanzi={blurHanzi}
         blurMeaning={blurMeaning}
         blurPinyin={blurPinyin}
+        shuffleActive={orderIsRandom}
         filterChecked={filterChecked}
         filterStarred={filterStarred}
         onToggleBlurHanzi={() => setBlurHanzi((v) => !v)}
@@ -188,7 +194,7 @@ export function StudyPage() {
           </div>
         ) : visibleOrderPositions.length === 0 ? (
           <p className="flex flex-1 items-center justify-center py-12 text-center text-stone-500">
-            필터에 맞는 문장이 없습니다. 필터를 끄거나 상태를 표시해 주세요.
+            필터에 맞는 문장이 없습니다. 필터를 끄거나, 미완료/즐겨찾기 상태를 확인해 주세요.
           </p>
         ) : currentSentence ? (
           <div className="flex min-h-0 flex-1 flex-col justify-center">

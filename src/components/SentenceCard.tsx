@@ -34,11 +34,14 @@ export function SentenceCard({
     meaning: false,
   })
 
-  const lineClass = (blurOn: boolean, revealedField: boolean) => {
-    const blurred = blurOn && !revealedField
+  /** 토글 ON이면 글자는 투명 처리하고 점선 밑줄만 보이게 함. 줄을 누르면 다시 표시 */
+  const lineClass = (blurOn: boolean, revealedField: boolean, visibleTextClass: string) => {
+    const hidden = blurOn && !revealedField
     return [
-      'cursor-pointer select-none transition-[filter] duration-200 ease-out',
-      blurred ? 'blur-[8px]' : 'blur-none',
+      'cursor-pointer select-none transition-[color,text-decoration-color] duration-200 ease-out',
+      hidden
+        ? 'text-transparent underline decoration-dotted decoration-2 decoration-stone-400 underline-offset-[0.25em]'
+        : `${visibleTextClass} no-underline`,
     ].join(' ')
   }
 
@@ -84,21 +87,21 @@ export function SentenceCard({
 
       <div className="flex min-h-0 flex-1 flex-col justify-center gap-4 overflow-y-auto px-1">
         <p
-          className={`text-center font-['Noto_Sans_SC',sans-serif] text-[clamp(1.35rem,5.5vw,2rem)] leading-snug text-[#1A1A1A] ${lineClass(blurHanzi, revealed.hanzi)}`}
+          className={`text-center font-['Noto_Sans_SC',sans-serif] text-[clamp(1.65rem,7vw,2.5rem)] leading-snug ${lineClass(blurHanzi, revealed.hanzi, 'text-[#1A1A1A]')}`}
           onClick={(e) => toggleReveal('hanzi', blurHanzi, e)}
           onKeyDown={lineKey('hanzi', blurHanzi)}
         >
           {sentence.hanzi}
         </p>
         <p
-          className={`text-center text-[15px] leading-relaxed text-[#666] sm:text-base ${lineClass(blurPinyin, revealed.pinyin)}`}
+          className={`text-center text-[15px] leading-relaxed sm:text-base ${lineClass(blurPinyin, revealed.pinyin, 'text-[#666]')}`}
           onClick={(e) => toggleReveal('pinyin', blurPinyin, e)}
           onKeyDown={lineKey('pinyin', blurPinyin)}
         >
           {sentence.pinyin}
         </p>
         <p
-          className={`text-center text-[17px] leading-relaxed text-[#333] ${lineClass(blurMeaning, revealed.meaning)}`}
+          className={`text-center text-[17px] leading-relaxed ${lineClass(blurMeaning, revealed.meaning, 'text-[#333]')}`}
           onClick={(e) => toggleReveal('meaning', blurMeaning, e)}
           onKeyDown={lineKey('meaning', blurMeaning)}
         >

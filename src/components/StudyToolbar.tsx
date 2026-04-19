@@ -4,6 +4,8 @@ interface Props {
   blurHanzi: boolean
   blurMeaning: boolean
   blurPinyin: boolean
+  /** 랜덤(섞기) 적용 중이면 주사위 버튼이 강조됩니다 */
+  shuffleActive: boolean
   filterChecked: boolean
   filterStarred: boolean
   onToggleBlurHanzi: () => void
@@ -54,6 +56,7 @@ export function StudyToolbar({
   blurHanzi,
   blurMeaning,
   blurPinyin,
+  shuffleActive,
   filterChecked,
   filterStarred,
   onToggleBlurHanzi,
@@ -85,7 +88,15 @@ export function StudyToolbar({
         </div>
 
         <div className="flex shrink-0 items-center gap-1">
-          <IconRound active={false} onClick={onShuffle} label="문장 순서 랜덤">
+          <IconRound
+            active={shuffleActive}
+            onClick={onShuffle}
+            label={
+              shuffleActive
+                ? '랜덤 순서 적용 중 (다시 누르면 재섞기)'
+                : '문장 순서 랜덤'
+            }
+          >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
               <rect
                 x="3.5"
@@ -106,11 +117,27 @@ export function StudyToolbar({
           <IconRound
             active={filterChecked}
             onClick={onToggleFilterChecked}
-            label="학습 완료만 보기"
+            label="체크 안 된 문장만 보기"
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-              <path d="M9 11l3 3L22 4" />
-              <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <rect
+                x="4"
+                y="4"
+                width="16"
+                height="16"
+                rx="2.5"
+                stroke="currentColor"
+                strokeWidth="2"
+                fill="none"
+              />
+              <path
+                d="M8.5 12.2 10.8 14.5 15.5 9.5"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                fill="none"
+              />
             </svg>
           </IconRound>
           <IconRound active={filterStarred} onClick={onToggleFilterStarred} label="즐겨찾기만 보기">

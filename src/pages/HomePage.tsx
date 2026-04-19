@@ -35,15 +35,17 @@ export function HomePage() {
       <header className="border-b border-stone-100 px-4 py-6 text-center">
         <h1 className="text-2xl font-semibold text-[#1A1A1A]">문장 목록</h1>
       </header>
-      {loading ? (
-        <p className="px-4 py-8 text-center text-stone-500">불러오는 중…</p>
-      ) : error ? (
-        <p className="px-4 py-8 text-center text-red-600">{error}</p>
-      ) : categories.length === 0 ? (
-        <p className="px-4 py-8 text-center text-stone-500">카테고리가 없습니다.</p>
-      ) : (
-        <CategoryList categories={categories} />
-      )}
+      <div className="pt-3">
+        {loading ? (
+          <p className="px-4 py-8 text-center text-stone-500">불러오는 중…</p>
+        ) : error ? (
+          <p className="px-4 py-8 text-center text-red-600">{error}</p>
+        ) : categories.length === 0 ? (
+          <p className="px-4 py-8 text-center text-stone-500">카테고리가 없습니다.</p>
+        ) : (
+          <CategoryList categories={categories} />
+        )}
+      </div>
     </div>
   )
 }
